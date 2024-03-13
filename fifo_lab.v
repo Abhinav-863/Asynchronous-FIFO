@@ -8,7 +8,7 @@ module fifo_lab
     input clk_w, clk_r, rst, wr_en, rd_en,         // Clock, reset, write enable, and read enable signals
     input [DATA_WIDTH-1:0] buff_in,                // Input data to be written into the FIFO
     output reg [DATA_WIDTH-1:0] buff_out,          // Output data read from the FIFO
-    output reg [6:0] fifo_counter                   // Current occupancy of the FIFO
+    output reg [DEPTH-1:0] fifo_counter                   // Current occupancy of the FIFO
 );
 
     reg buff_empty, buff_full;                      // Flags indicating FIFO empty and full status
