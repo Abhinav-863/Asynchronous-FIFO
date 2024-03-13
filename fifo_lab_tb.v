@@ -1,16 +1,20 @@
 `timescale 1ns / 1ps  // Define simulation timescale
 
 module fifo_lab_tb;
+
+    parameter DATA_WIDTH = 8,     // Width of data stored in the FIFO
+    parameter DEPTH = 64,         // Depth or size of the FIFO
+    parameter PTR = 4             // Number of bits required to address FIFO memory locations
     reg clk_w;          // Define write clock signal
     reg clk_r;          // Define read clock signal
     reg rst;            // Define reset signal
     reg wr_en;          // Define write enable signal
     reg rd_en;          // Define read enable signal
-    reg [7:0] buff_in;  // Define input data to the FIFO
-    wire [7:0] buff_out;  // Define output data read from the FIFO
-    wire [6:0] fifo_counter;  // Define current occupancy of the FIFO
+    reg [DATA_WIDTH-1:0] buff_in;  // Define input data to the FIFO
+    wire [DATA_WIDTH-1:0] buff_out;  // Define output data read from the FIFO
+    wire [DEPTH-1:0] fifo_counter;  // Define current occupancy of the FIFO
 
-    fifo_lab uut (      // Instantiate the FIFO module
+    fifo_lab uut (      // Instantiate the FIFO     module
         .clk_w(clk_w),  // Connect write clock signal
         .clk_r(clk_r),  // Connect read clock signal
         .rst(rst),      // Connect reset signal
