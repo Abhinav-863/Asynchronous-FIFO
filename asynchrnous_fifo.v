@@ -1,8 +1,8 @@
-module fifo_lab
+module asynchronous_fifo
 #(
-    parameter DATA_WIDTH = 8,     // Width of data stored in the FIFO
-    parameter DEPTH = 64,         // Depth or size of the FIFO
-    parameter PTR = 4             // Number of bits required to address FIFO memory locations
+    parameter DATA_WIDTH = 32,     // Width of data stored in the FIFO
+    parameter DEPTH = 128,         // Depth or size of the FIFO
+    parameter PTR = 8             // Number of bits required to address FIFO memory locations
 )
 (
     input clk_w, clk_r, rst, wr_en, rd_en,         // Clock, reset, write enable, and read enable signals
@@ -35,7 +35,7 @@ module fifo_lab
     end
 
     // Read operation: Decrement fifo_counter when reading from the FIFO
-    always @(posedge clk_r or posedge rst) begin
+    always @(posedge clk_r) begin
         if (!buff_empty && rd_en) begin
             fifo_counter <= fifo_counter - 1;
         end
@@ -60,7 +60,7 @@ module fifo_lab
     end
 
     // Write data into the FIFO
-    always @(posedge clk_w or posedge rst) begin
+    always @(posedge clk_w ) begin
         if (wr_en && !buff_full) begin
             buff_mem[wr_pointer] <= buff_in;
         end
