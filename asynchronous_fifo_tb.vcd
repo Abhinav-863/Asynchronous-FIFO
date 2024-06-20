@@ -1,0 +1,218 @@
+$date
+	Thu Jun 20 21:30:43 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module asynchronous_fifo_tb $end
+$var wire 128 ! fifo_counter [127:0] $end
+$var wire 32 " buff_out [31:0] $end
+$var parameter 32 # DATA_WIDTH $end
+$var parameter 32 $ DEPTH $end
+$var parameter 32 % PTR $end
+$var reg 32 & buff_in [31:0] $end
+$var reg 1 ' clk_r $end
+$var reg 1 ( clk_w $end
+$var reg 1 ) rd_en $end
+$var reg 1 * rst $end
+$var reg 1 + wr_en $end
+$scope module uut $end
+$var wire 32 , buff_in [31:0] $end
+$var wire 1 ' clk_r $end
+$var wire 1 ( clk_w $end
+$var wire 1 ) rd_en $end
+$var wire 1 * rst $end
+$var wire 1 + wr_en $end
+$var parameter 32 - DATA_WIDTH $end
+$var parameter 32 . DEPTH $end
+$var parameter 32 / PTR $end
+$var reg 1 0 buff_empty $end
+$var reg 1 1 buff_full $end
+$var reg 32 2 buff_out [31:0] $end
+$var reg 128 3 fifo_counter [127:0] $end
+$var reg 8 4 rd_pointer [7:0] $end
+$var reg 8 5 wr_pointer [7:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b1000 /
+b10000000 .
+b100000 -
+b1000 %
+b10000000 $
+b100000 #
+$end
+#0
+$dumpvars
+b0 5
+b0 4
+b0 3
+b0 2
+01
+10
+b0 ,
+0+
+1*
+0)
+0(
+0'
+b0 &
+b0 "
+b0 !
+$end
+#5000
+1(
+#10000
+0(
+0*
+1'
+#15000
+1(
+#20000
+0(
+b10100101101001011010010110100101 &
+b10100101101001011010010110100101 ,
+1+
+0'
+#25000
+00
+b1 5
+b1 !
+b1 3
+1(
+#30000
+0(
+0+
+1'
+#35000
+1(
+#40000
+0(
+0'
+#45000
+1(
+#50000
+0(
+1'
+b10110111100001001100001110101000 &
+b10110111100001001100001110101000 ,
+1+
+#55000
+b10 !
+b10 3
+b10 5
+1(
+#60000
+0(
+0'
+0+
+#65000
+1(
+#70000
+0(
+1'
+#75000
+1(
+#80000
+0(
+0'
+#85000
+1(
+#90000
+b1 4
+b10100101101001011010010110100101 "
+b10100101101001011010010110100101 2
+b1 !
+b1 3
+0(
+1'
+1)
+#95000
+1(
+#100000
+0(
+0'
+0)
+#105000
+1(
+#110000
+0(
+1'
+#115000
+1(
+#120000
+0(
+0'
+#125000
+1(
+#130000
+10
+b10 4
+b10110111100001001100001110101000 "
+b10110111100001001100001110101000 2
+b0 !
+b0 3
+0(
+1'
+1)
+#135000
+1(
+#140000
+0(
+0'
+0)
+#145000
+1(
+#150000
+0(
+1'
+#155000
+1(
+#160000
+0(
+0'
+#165000
+1(
+#170000
+0(
+1'
+#175000
+1(
+#180000
+0(
+0'
+#185000
+1(
+#190000
+0(
+1'
+#195000
+1(
+#200000
+0(
+0'
+#205000
+1(
+#210000
+0(
+1'
+#215000
+1(
+#220000
+0(
+0'
+#225000
+1(
+#230000
+0(
+1'
+#235000
+1(
+#240000
+0(
+0'
