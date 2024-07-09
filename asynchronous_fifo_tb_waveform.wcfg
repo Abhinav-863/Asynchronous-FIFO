@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="asynchronous_fifo_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="asynchronous_fifo_tb" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="246.801 ns"></ZoomEndTime>
+      <Cursor1Time time="133.200 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="122"></NameColumnWidth>
+      <ValueColumnWidth column_width="100"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="11" />
+   <wvobject fp_name="/asynchronous_fifo_tb/clk_w" type="logic">
+      <obj_property name="ElementShortName">clk_w</obj_property>
+      <obj_property name="ObjectShortName">clk_w</obj_property>
+   </wvobject>
+   <wvobject fp_name="/asynchronous_fifo_tb/clk_r" type="logic">
+      <obj_property name="ElementShortName">clk_r</obj_property>
+      <obj_property name="ObjectShortName">clk_r</obj_property>
+   </wvobject>
+   <wvobject fp_name="/asynchronous_fifo_tb/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/asynchronous_fifo_tb/wr_en" type="logic">
+      <obj_property name="ElementShortName">wr_en</obj_property>
+      <obj_property name="ObjectShortName">wr_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/asynchronous_fifo_tb/rd_en" type="logic">
+      <obj_property name="ElementShortName">rd_en</obj_property>
+      <obj_property name="ObjectShortName">rd_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/asynchronous_fifo_tb/buff_in" type="array">
+      <obj_property name="ElementShortName">buff_in[31:0]</obj_property>
+      <obj_property name="ObjectShortName">buff_in[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/asynchronous_fifo_tb/buff_out" type="array">
+      <obj_property name="ElementShortName">buff_out[31:0]</obj_property>
+      <obj_property name="ObjectShortName">buff_out[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/asynchronous_fifo_tb/fifo_counter" type="array">
+      <obj_property name="ElementShortName">fifo_counter[127:0]</obj_property>
+      <obj_property name="ObjectShortName">fifo_counter[127:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/asynchronous_fifo_tb/DATA_WIDTH" type="array">
+      <obj_property name="ElementShortName">DATA_WIDTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">DATA_WIDTH[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/asynchronous_fifo_tb/DEPTH" type="array">
+      <obj_property name="ElementShortName">DEPTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">DEPTH[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/asynchronous_fifo_tb/PTR" type="array">
+      <obj_property name="ElementShortName">PTR[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PTR[31:0]</obj_property>
+   </wvobject>
+</wave_config>
