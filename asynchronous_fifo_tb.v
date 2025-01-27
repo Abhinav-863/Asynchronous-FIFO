@@ -1,73 +1,77 @@
 `timescale 1ns/1ps
 `include "asynchronous_fifo.v"
-module asynchronous_fifo_tb;
+module asynchronous_fifo_tb();
 
-    // Parameters
-    parameter DATA_WIDTH = 32;
-    parameter DEPTH = 128;
-    parameter PTR = 8;
+    parameter DSIZE = 8; // Data bus size
+    parameter ASIZE = 3; // Address bus size
+    parameter DEPTH = 1 << ASIZE; // Depth of the FIFO memory
 
-    // Testbench signals
-    reg clk_w, clk_r, rst, wr_en, rd_en;
-    reg [DATA_WIDTH-1:0] buff_in;
-    wire [DATA_WIDTH-1:0] buff_out;
-    wire [DEPTH-1:0] fifo_counter;
+    reg [DSIZE-1:0] wdata;   // Input data
+    wire [DSIZE-1:0] rdata;  // Output data
+    wire wfull, rempty;      // Write full and read empty signals
+    reg winc, rinc, wclk, rclk, wrst_n, rrst_n; // Write and read signals
 
-    // Instantiate the FIFO module
-    asynchronous_fifo #(
-        .DATA_WIDTH(DATA_WIDTH),
-        .DEPTH(DEPTH),
-        .PTR(PTR)
-    ) uut (
-        .clk_w(clk_w),
-        .clk_r(clk_r),
-        .rst(rst),
-        .wr_en(wr_en),
-        .rd_en(rd_en),
-        .buff_in(buff_in),
-        .buff_out(buff_out),
-        .fifo_counter(fifo_counter)
+    asynchronous_fifo #(DSIZE, ASIZE) fifo (
+        .rdata(rdata), 
+        .wdata(wdata),
+        .wfull(wfull),
+        .rempty(rempty),
+        .winc(winc), 
+        .rinc(rinc), 
+        .wclk(wclk), 
+        .rclk(rclk), 
+        .wrst_n(wrst_n), 
+        .rrst_n(rrst_n)
     );
 
-    // Generate clocks
-    always #5 clk_w = ~clk_w;
-    always #10 clk_r = ~clk_r;
+    integer i=0;
+    integer seed = 1;
 
+    // Read and write clock in loop
+    always #5 wclk = ~wclk;    // faster writing
+    always #10 rclk = ~rclk;   // slower reading
+    
     initial begin
-        // Initialize signals
-        clk_w = 0;
-        clk_r = 0;
-        rst = 1;
-        wr_en = 0;
-        rd_en = 0;
-        buff_in = 0;
+        // Initialize all signals
+        wclk = 0;
+        rclk = 0;
+        wrst_n = 1;     // Active low reset
+        rrst_n = 1;     // Active low reset
+        winc = 0;
+        rinc = 0;
+        wdata = 0;
 
         // Reset the FIFO
-        #10 rst = 0;
-        
-        // Write some data
-        #10 wr_en = 1; buff_in = 32'hA5A5A5A5;
-        #10 wr_en = 0;
-        
-        #20 wr_en = 1; buff_in = 32'hB784C3A8;
-        #10 wr_en = 0;
-        
-        // Read some data
-        #30 rd_en = 1;
-        #10 rd_en = 0;
-        
-        #30 rd_en = 1;
-        #10 rd_en = 0;
-        
-        // Finish the simulation
-        #100 $finish;
-    end
+        #40 wrst_n = 0; rrst_n = 0;
+        #40 wrst_n = 1; rrst_n = 1;
 
-    initial begin
-        // Monitor signals
-        $monitor("Time=%0t, rst=%b, wr_en=%b, rd_en=%b, buff_in=%h, buff_out=%h, fifo_counter=%d", $time, rst, wr_en, rd_en, buff_in, buff_out, fifo_counter);
-    end
+        // TEST CASE 1: Write data and read it back
+        rinc = 1;
+        for (i = 0; i < 10; i = i + 1) begin
+            wdata = $random(seed) % 256;
+            winc = 1;
+            #10;
+            winc = 0;
+            #10;
+        end
 
+        // TEST CASE 2: Write data to make FIFO full and try to write more data
+        rinc = 0;
+        winc = 1;
+        for (i = 0; i < DEPTH + 3; i = i + 1) begin
+            wdata = $random(seed) % 256;
+            #10;
+        end
+
+        // TEST CASE 3: Read data from empty FIFO and try to read more data
+        winc = 0;
+        rinc = 1;
+        for (i = 0; i < DEPTH + 3; i = i + 1) begin
+            #20;
+        end
+
+        $finish;
+    end
     initial begin
         // VCD dump
         $dumpfile("asynchronous_fifo_tb.vcd"); // Name of the VCD file
