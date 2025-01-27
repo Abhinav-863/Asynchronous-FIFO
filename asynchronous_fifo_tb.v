@@ -2,14 +2,14 @@
 `include "asynchronous_fifo.v"
 module asynchronous_fifo_tb();
 
-    parameter DSIZE = 8; // Data bus size
-    parameter ASIZE = 3; // Address bus size
-    parameter DEPTH = 1 << ASIZE; // Depth of the FIFO memory
+    parameter DSIZE = 8; 
+    parameter ASIZE = 3; 
+    parameter DEPTH = 1 << ASIZE; 
 
-    reg [DSIZE-1:0] wdata;   // Input data
-    wire [DSIZE-1:0] rdata;  // Output data
-    wire wfull, rempty;      // Write full and read empty signals
-    reg winc, rinc, wclk, rclk, wrst_n, rrst_n; // Write and read signals
+    reg [DSIZE-1:0] wdata;  
+    wire [DSIZE-1:0] rdata;  
+    wire wfull, rempty;     
+    reg winc, rinc, wclk, rclk, wrst_n, rrst_n; 
 
     asynchronous_fifo #(DSIZE, ASIZE) fifo (
         .rdata(rdata), 
@@ -27,21 +27,20 @@ module asynchronous_fifo_tb();
     integer i=0;
     integer seed = 1;
 
-    // Read and write clock in loop
-    always #5 wclk = ~wclk;    // faster writing
-    always #10 rclk = ~rclk;   // slower reading
+    always #5 wclk = ~wclk;    
+    always #10 rclk = ~rclk;   
     
     initial begin
-        // Initialize all signals
+      
         wclk = 0;
         rclk = 0;
-        wrst_n = 1;     // Active low reset
-        rrst_n = 1;     // Active low reset
+        wrst_n = 1;     
+        rrst_n = 1;     
         winc = 0;
         rinc = 0;
         wdata = 0;
 
-        // Reset the FIFO
+    
         #40 wrst_n = 0; rrst_n = 0;
         #40 wrst_n = 1; rrst_n = 1;
 
@@ -73,9 +72,9 @@ module asynchronous_fifo_tb();
         $finish;
     end
     initial begin
-        // VCD dump
-        $dumpfile("asynchronous_fifo_tb.vcd"); // Name of the VCD file
-        $dumpvars(0, asynchronous_fifo_tb);    // Dump all variables
+        
+        $dumpfile("asynchronous_fifo_tb.vcd");
+        $dumpvars(0, asynchronous_fifo_tb);    
     end
 
 endmodule
